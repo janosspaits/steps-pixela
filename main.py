@@ -1,5 +1,6 @@
 import requests
 import json
+from datetime import datetime
 
 
 def read_from_file(filepath):
@@ -27,15 +28,24 @@ user_params = {
 
 graph_endpoint = f"{pixela_endpoint}/{USERNAME}/graphs"
 
-graph_config = {
-    "id": "graph2",
-    "name": "Steps Graph",
-    "unit": "steps",
-    "type": "int",
-    "color": "shibafu",
-}
+# graph_config = {
+#     "id": "graph1",
+#     "name": "Steps Graph",
+#     "unit": "steps",
+#     "type": "int",
+#     "color": "shibafu",
+# }
 
 headers = {"X-USER-TOKEN": apikey}
 
 # response = requests.post(url=graph_endpoint, json=graph_config, headers=headers)
 # print(response.text)
+
+# Posting a point on the graph
+
+posting_a_point = {"date": "20240216", "quantity": "8769"}
+
+response = requests.post(
+    url=graph_endpoint + "/graph1", json=posting_a_point, headers=headers
+)
+print(response.text)
